@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Area
 
 
-class AreaWithParentSerializer(serializers.ModelSerializer):
+class AreaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Area
-        fields = ('id','name','level','parent')
+        fields = ('id', 'name', 'level')

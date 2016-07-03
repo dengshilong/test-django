@@ -1,8 +1,8 @@
 from rest_framework import generics
 from .cache import city_cache
-from .serializer import AreaWithParentSerializer
+from .serializer import AreaSerializer
 class CityListAPI(generics.ListAPIView):
-    serializer_class = AreaWithParentSerializer
+    serializer_class = AreaSerializer
 
     def get_queryset(self):
         return city_cache(self._province)
