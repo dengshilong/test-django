@@ -15,7 +15,7 @@ class Area(MPTTModel):
 
     class Meta:
         db_table = 'area'
-        verbose_name = verbose_name_plural = (u'省/市/地区(县)')
+        verbose_name = verbose_name_plural = (u'省/市/区(县)')
 
     def __unicode__(self):
         return self.name

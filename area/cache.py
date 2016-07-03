@@ -4,7 +4,7 @@ from .models import Area
 
 def city_cache(province):
     """市"""
-    key='area_list_%s' % province
+    key = 'city_list_%s' % province
     cities = cache.get(key)
     if cities is None:
         cities = list(Area.objects.filter(parent_id=province))
