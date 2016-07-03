@@ -3,7 +3,9 @@ from __future__ import unicode_literals
 
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
-
+from django.core.cache import cache
+from django.db.models.signals import post_save, post_delete
+from django.dispatch import receiver
 # Create your models here.
 
 class Area(MPTTModel):
@@ -19,3 +21,15 @@ class Area(MPTTModel):
 
     def __unicode__(self):
         return self.name
+
+
+@receiver(post_delete, sender=Area)
+@receiver(post_save, sender=Area)
+def delete_cache(sender, **kwargs):
+    #清除cache
+    obj = kwargs['instance']
+    if obj.parent is None:
+        key = "city_list_0"
+    else:
+        key = "city_list_%s" % obj.parent_id
+    cache.delete(key)
