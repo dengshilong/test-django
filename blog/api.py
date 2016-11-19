@@ -1,6 +1,6 @@
 from rest_framework import generics
-from .serializer import PostSerializer
-from .models import Post
+from .serializer import PostSerializer, TestTagSerializer
+from .models import Post, TestTag
 
 
 class PostListAPI(generics.ListAPIView):
@@ -14,3 +14,12 @@ class PostListAPI(generics.ListAPIView):
         queryset = queryset.select_related('category')
         queryset = queryset.prefetch_related('tag')
         return queryset
+
+class TestTagListAPI(generics.ListAPIView):
+    serializer_class =  TestTagSerializer
+    model = TestTag
+    paginate_by = 10
+    queryset = TestTag.objects.all()
+    def get_queryset(self):
+        return super(TestTagListAPI, self).get_queryset()
+

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'area',
     'rest_framework',
     'blog',
+    'taggit',
+    'taggit_serializer',
 ]
 
 MIDDLEWARE_CLASSES = [
